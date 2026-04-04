@@ -8,7 +8,7 @@ function TaskPanel({
   locked = false,
 }) {
   return (
-    <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-cyan-950/20 backdrop-blur">
+    <section className="rounded-3xl border border-white/10 bg-[#285A48] p-6 shadow-xl shadow-cyan-950/20 backdrop-blur">
       <div className="mb-5 flex items-end justify-between gap-4">
         <div>
           <h2 className="text-2xl font-semibold text-white">{title}</h2>
@@ -53,7 +53,7 @@ function TaskPanel({
                   <button
                     type="button"
                     onClick={() => onAction?.(task.id)}
-                    className="rounded-xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-400/20 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+                    className="rounded-xl border border-[#B0E4CC]/40 bg-[#B0E4CC] px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-[#9DD8BE] focus:outline-none focus:ring-2 focus:ring-[#B0E4CC]/50"
                   >
                     {actionLabel}
                   </button>

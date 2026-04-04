@@ -8,9 +8,19 @@ const emptyTask = {
   state: "in progress",
 };
 
+function getTodayDateString() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [form, setForm] = useState(emptyTask);
+  const minFinalDate = getTodayDateString();
 
   const handleFormChange = (field, value) => {
     setForm((current) => ({
@@ -34,6 +44,12 @@ function App() {
 
     const trimmedName = form.name.trim();
     if (!trimmedName || !form.finalDate) {
+      window.alert("Please add a task name and final date.");
+      return;
+    }
+
+    if (form.finalDate < minFinalDate) {
+      window.alert("Final date cannot be before today.");
       return;
     }
 
@@ -59,11 +75,11 @@ function App() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#B0E4CC] px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8">
-        <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-cyan-950/30 backdrop-blur sm:p-8">
+        <section className="rounded-3xl border border-white/10 bg-[#285A48] p-6 shadow-2xl shadow-cyan-950/30 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3">
-            <p className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-300">
+            <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#B0E4CC]">
               Simple todo app
             </p>
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -80,6 +96,7 @@ function App() {
             form={form}
             onFormChange={handleFormChange}
             onSubmit={handleSubmit}
+            minFinalDate={minFinalDate}
           />
         </section>
 
